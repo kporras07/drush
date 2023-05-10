@@ -1536,6 +1536,8 @@ function drush_format_size($size) {
 function drush_set_error($error, $message = null, $output_label = "") {
   $error_code =& drush_get_context('DRUSH_ERROR_CODE', DRUSH_SUCCESS);
   $error_code = DRUSH_FRAMEWORK_ERROR;
+  echo "ERROR CODE: \n";
+  var_dump($error_code);
 
   $error_log =& drush_get_context('DRUSH_ERROR_LOG', array());
 
@@ -1557,6 +1559,8 @@ function drush_set_error($error, $message = null, $output_label = "") {
   if (!drush_backend_packet('set_error', array('error' => $error, 'message' => $message))) {
     drush_log(($message) ? $output_label . $message : $output_label . $error, LogLevel::ERROR, $error);
   }
+  echo "ERROR LOG: \n";
+  var_dump($error_log);
 
   return FALSE;
 }
@@ -1603,6 +1607,7 @@ function drush_cmp_error($error) {
  * Clear error context.
  */
 function drush_clear_error() {
+  var_dump(debug_backtrace());
   drush_set_context('DRUSH_ERROR_CODE', DRUSH_SUCCESS);
 }
 
