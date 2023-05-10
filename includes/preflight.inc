@@ -876,6 +876,8 @@ function drush_coverage_shutdown() {
 function drush_return_status() {
   // If a specific exit code was set, then use it.
   $exit_code = drush_get_context('DRUSH_EXIT_CODE');
+  var_dump($exit_code);
+  var_dump(drush_get_error());
   if (empty($exit_code)) {
     $exit_code = (drush_get_error()) ? DRUSH_FRAMEWORK_ERROR : DRUSH_SUCCESS;
   }
